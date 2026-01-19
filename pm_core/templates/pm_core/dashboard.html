@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Management Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+            <li><strong>{{ project.name }}</strong>: {{ project.description }}</li>
+        {% empty %}
+            <li>No projects yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task.title }} (Project: {{ task.project.name }}) - 
+                {% if task.is_completed %} Done {% else %} Pending {% endif %}
+            </li>
+        {% empty %}
+            <li>No tasks yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>"{{ comment.content }}" on Task: {{ comment.task.title }}</li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
